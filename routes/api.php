@@ -13,7 +13,6 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuUserController;
 use App\Http\Controllers\MenuRolController;
 
-
 // Usuario Routes
 Route::apiResource('usuarios', UserController::class);
 Route::patch('usuarios/{id}/status', [UserController::class, 'updateStatus']);

@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use App\Models\Usuario;
 
+use function App\Providers\apiResponse;
+
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -35,13 +37,16 @@ class UserController extends Controller
 
             // Add pagination
             $usuarios = $query->paginate($request->per_page ?? 10);
-
-            return response()->json($usuarios, 200);
+            return apiResponse(200, 'Users fetched successfully', $usuarios->items(), [
+            'total' => $usuarios->total(),
+            'per_page' => $usuarios->perPage(),
+            'current_page' => $usuarios->currentPage(),
+            'last_page' => $usuarios->lastPage(),
+            'from' => $usuarios->firstItem(),
+            'to' => $usuarios->lastItem(),
+        ]);
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error fetching users',
-                'error' => $e->getMessage()
-            ], 500);
+            return apiResponse(500, 'An unexpected error occurred. Please try again later.', [], [], $e->getMessage());
         }
     }
     public function show(Request $request, $id)
@@ -60,7 +65,11 @@ class UserController extends Controller
                 return response()->json(['message' => 'User not found'], 404);
             }
 
-            return response()->json($user, 200);
+            // return response()->json($user, 200);
+            return response()->json([
+                'message' => 'User retrieved successfully',
+                'data' => $user
+            ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error fetching user',

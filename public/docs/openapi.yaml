@@ -1,0 +1,895 @@
+openapi: 3.0.3
+info:
+  title: Invendi
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/documentation:
+    get:
+      summary: 'Display Swagger API page.'
+      operationId: displaySwaggerAPIPage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>L5 Swagger UI</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost/docs/asset/swagger-ui.css?v=0755b7093afdd36d03212b65315f0209\">\n    <link rel=\"icon\" type=\"image/png\" href=\"http://localhost/docs/asset/favicon-32x32.png?v=40d4f2c38d1cd854ad463f16373cbcb6\" sizes=\"32x32\"/>\n    <link rel=\"icon\" type=\"image/png\" href=\"http://localhost/docs/asset/favicon-16x16.png?v=f0ae831196d55d8f4115b6c5e8ec5384\" sizes=\"16x16\"/>\n    <style>\n    html\n    {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n    }\n    *,\n    *:before,\n    *:after\n    {\n        box-sizing: inherit;\n    }\n\n    body {\n      margin:0;\n      background: #fafafa;\n    }\n    </style>\n    </head>\n\n<body >\n<div id=\"swagger-ui\"></div>\n\n<script src=\"http://localhost/docs/asset/swagger-ui-bundle.js?v=6c23777357d2beae9650f9aa035d93fb\"></script>\n<script src=\"http://localhost/docs/asset/swagger-ui-standalone-preset.js?v=6b2892eb9458da5c3224817b3984d14c\"></script>\n<script>\n    window.onload = function() {\n        // Build a system\n        const ui = SwaggerUIBundle({\n            dom_id: '#swagger-ui',\n            url: \"http://localhost/docs/api-docs.json\",\n            operationsSorter: null,\n            configUrl: null,\n            validatorUrl: null,\n            oauth2RedirectUrl: \"http://localhost/api/oauth2-callback\",\n\n            requestInterceptor: function(request) {\n                request.headers['X-CSRF-TOKEN'] = '';\n                return request;\n            },\n\n            presets: [\n                SwaggerUIBundle.presets.apis,\n                SwaggerUIStandalonePreset\n            ],\n\n            plugins: [\n                SwaggerUIBundle.plugins.DownloadUrl\n            ],\n\n            layout: \"StandaloneLayout\",\n            docExpansion : \"none\",\n            deepLinking: true,\n            filter: true,\n            persistAuthorization: \"false\",\n\n        })\n\n        window.ui = ui\n\n            }\n</script>\n</body>\n</html>\n"
+      tags:
+        - Endpoints
+      security: []
+  /api/oauth2-callback:
+    get:
+      summary: 'Display Oauth2 callback pages.'
+      operationId: displayOauth2CallbackPages
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!doctype html>\n<html lang=\"en-US\">\n<head>\n    <title>Swagger UI: OAuth2 Redirect</title>\n</head>\n<body>\n<script>\n    'use strict';\n    function run () {\n        var oauth2 = window.opener.swaggerUIRedirectOauth2;\n        var sentState = oauth2.state;\n        var redirectUrl = oauth2.redirectUrl;\n        var isValid, qp, arr;\n\n        if (/code|token|error/.test(window.location.hash)) {\n            qp = window.location.hash.substring(1).replace('?', '&');\n        } else {\n            qp = location.search.substring(1);\n        }\n\n        arr = qp.split(\"&\");\n        arr.forEach(function (v,i,_arr) { _arr[i] = '\"' + v.replace('=', '\":\"') + '\"';});\n        qp = qp ? JSON.parse('{' + arr.join() + '}',\n                function (key, value) {\n                    return key === \"\" ? value : decodeURIComponent(value);\n                }\n        ) : {};\n\n        isValid = qp.state === sentState;\n\n        if ((\n          oauth2.auth.schema.get(\"flow\") === \"accessCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorizationCode\" ||\n          oauth2.auth.schema.get(\"flow\") === \"authorization_code\"\n        ) && !oauth2.auth.code) {\n            if (!isValid) {\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"warning\",\n                    message: \"Authorization may be unsafe, passed state was changed in server. The passed state wasn't returned from auth server.\"\n                });\n            }\n\n            if (qp.code) {\n                delete oauth2.state;\n                oauth2.auth.code = qp.code;\n                oauth2.callback({auth: oauth2.auth, redirectUrl: redirectUrl});\n            } else {\n                let oauthErrorMsg;\n                if (qp.error) {\n                    oauthErrorMsg = \"[\"+qp.error+\"]: \" +\n                        (qp.error_description ? qp.error_description+ \". \" : \"no accessCode received from the server. \") +\n                        (qp.error_uri ? \"More info: \"+qp.error_uri : \"\");\n                }\n\n                oauth2.errCb({\n                    authId: oauth2.auth.name,\n                    source: \"auth\",\n                    level: \"error\",\n                    message: oauthErrorMsg || \"[Authorization failed]: no accessCode received from the server.\"\n                });\n            }\n        } else {\n            oauth2.callback({auth: oauth2.auth, token: qp, isValid: isValid, redirectUrl: redirectUrl});\n        }\n        window.close();\n    }\n\n    if (document.readyState !== 'loading') {\n        run();\n    } else {\n        document.addEventListener('DOMContentLoaded', function () {\n            run();\n        });\n    }\n</script>\n</body>\n</html>\n"
+      tags:
+        - Endpoints
+      security: []
+  /api/usuarios:
+    get:
+      summary: ''
+      operationId: getApiUsuarios
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  message: 'Users fetched successfully'
+                  data:
+                    -
+                      id: 1
+                      nombre: 'Jane Smith'
+                      email: jane@example.com
+                      email_verified_at: null
+                      celular: '+1234567890'
+                      whatsapp: '+1234567890'
+                      nickname: jsmith
+                      habilitado: true
+                      ayuda: false
+                      tipo_usuario_id: 1
+                      ultima_conexion: null
+                      created_at: null
+                      updated_at: null
+                  pagination:
+                    total: 1
+                    per_page: 10
+                    current_page: 1
+                    last_page: 1
+                    from: 1
+                    to: 1
+                  error: null
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Users fetched successfully'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        nombre: 'Jane Smith'
+                        email: jane@example.com
+                        email_verified_at: null
+                        celular: '+1234567890'
+                        whatsapp: '+1234567890'
+                        nickname: jsmith
+                        habilitado: true
+                        ayuda: false
+                        tipo_usuario_id: 1
+                        ultima_conexion: null
+                        created_at: null
+                        updated_at: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        nombre:
+                          type: string
+                          example: 'Jane Smith'
+                        email:
+                          type: string
+                          example: jane@example.com
+                        email_verified_at:
+                          type: string
+                          example: null
+                        celular:
+                          type: string
+                          example: '+1234567890'
+                        whatsapp:
+                          type: string
+                          example: '+1234567890'
+                        nickname:
+                          type: string
+                          example: jsmith
+                        habilitado:
+                          type: boolean
+                          example: true
+                        ayuda:
+                          type: boolean
+                          example: false
+                        tipo_usuario_id:
+                          type: integer
+                          example: 1
+                        ultima_conexion:
+                          type: string
+                          example: null
+                        created_at:
+                          type: string
+                          example: null
+                        updated_at:
+                          type: string
+                          example: null
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 10
+                      current_page:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      to:
+                        type: integer
+                        example: 1
+                  error:
+                    type: string
+                    example: null
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiUsuarios
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/usuarios/{id}':
+    get:
+      summary: ''
+      operationId: getApiUsuariosId
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User retrieved successfully'
+                  data:
+                    id: 1
+                    nombre: 'Jane Smith'
+                    email: jane@example.com
+                    email_verified_at: null
+                    celular: '+1234567890'
+                    whatsapp: '+1234567890'
+                    nickname: jsmith
+                    habilitado: true
+                    ayuda: false
+                    tipo_usuario_id: 1
+                    ultima_conexion: null
+                    created_at: null
+                    updated_at: null
+                properties:
+                  message:
+                    type: string
+                    example: 'User retrieved successfully'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      nombre:
+                        type: string
+                        example: 'Jane Smith'
+                      email:
+                        type: string
+                        example: jane@example.com
+                      email_verified_at:
+                        type: string
+                        example: null
+                      celular:
+                        type: string
+                        example: '+1234567890'
+                      whatsapp:
+                        type: string
+                        example: '+1234567890'
+                      nickname:
+                        type: string
+                        example: jsmith
+                      habilitado:
+                        type: boolean
+                        example: true
+                      ayuda:
+                        type: boolean
+                        example: false
+                      tipo_usuario_id:
+                        type: integer
+                        example: 1
+                      ultima_conexion:
+                        type: string
+                        example: null
+                      created_at:
+                        type: string
+                        example: null
+                      updated_at:
+                        type: string
+                        example: null
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiUsuariosId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiUsuariosId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the usuario.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/usuarios/{id}/status':
+    patch:
+      summary: 'Update user status'
+      operationId: updateUserStatus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the usuario.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/usuarios/{id}/remember':
+    post:
+      summary: ''
+      operationId: postApiUsuariosIdRemember
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the usuario.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/forgot-password:
+    post:
+      summary: ''
+      operationId: postApiForgotPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/reset-password:
+    post:
+      summary: ''
+      operationId: postApiResetPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/logout:
+    post:
+      summary: ''
+      operationId: postApiLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/refresh:
+    post:
+      summary: ''
+      operationId: postApiRefresh
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/profile:
+    get:
+      summary: ''
+      operationId: getApiProfile
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/profile/password:
+    post:
+      summary: ''
+      operationId: postApiProfilePassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/empresas:
+    get:
+      summary: ''
+      operationId: getApiEmpresas
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiEmpresas
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/empresas/{id}':
+    get:
+      summary: ''
+      operationId: getApiEmpresasId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Record not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Record not found'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiEmpresasId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiEmpresasId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the empresa.'
+        example: 14
+        required: true
+        schema:
+          type: integer
+  /api/agencias:
+    get:
+      summary: ''
+      operationId: getApiAgencias
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiAgencias
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                empresa_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the empresa table.'
+                  example: ipsum
+                  nullable: false
+                nombre:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: kpgidytubssyyfwkn
+                  nullable: false
+                direccion:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ebeklidyumljcjijhkeyi
+                  nullable: true
+                telefonos:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: dga
+                  nullable: true
+                geolocalizacion:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: edqoipqdexmrpjliabzqh
+                  nullable: true
+                correo_agencia:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: yeqafqnembxwz
+                  nullable: true
+                habilitado:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+              required:
+                - empresa_id
+                - nombre
+                - habilitado
+      security: []
+  '/api/agencias/{id}':
+    get:
+      summary: ''
+      operationId: getApiAgenciasId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Agency not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Agency not found'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiAgenciasId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                empresa_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the empresa table.'
+                  example: null
+                  nullable: false
+                nombre:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: sjuqykvzozohjwh
+                  nullable: false
+                direccion:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: bbbdydcgyuhcrholedshidd
+                  nullable: true
+                telefonos:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: jhyv
+                  nullable: true
+                geolocalizacion:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: oopxiqwqesydydegdjgb
+                  nullable: true
+                correo_agencia:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: duaxsry
+                  nullable: true
+                habilitado:
+                  type: boolean
+                  description: ''
+                  example: true
+                  nullable: false
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiAgenciasId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the agencia.'
+        example: 13
+        required: true
+        schema:
+          type: integer
+  /api/menus:
+    get:
+      summary: ''
+      operationId: getApiMenus
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiMenus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/menus/{id}':
+    get:
+      summary: ''
+      operationId: getApiMenusId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Record not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Record not found'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiMenusId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiMenusId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu.'
+        example: 16
+        required: true
+        schema:
+          type: integer
+  /api/menu-usuarios:
+    get:
+      summary: ''
+      operationId: getApiMenuUsuarios
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiMenuUsuarios
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/menu-usuarios/{id}':
+    get:
+      summary: ''
+      operationId: getApiMenuUsuariosId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Record not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Record not found'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiMenuUsuariosId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiMenuUsuariosId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu usuario.'
+        example: 13
+        required: true
+        schema:
+          type: integer
+  /api/rol-menus:
+    get:
+      summary: ''
+      operationId: getApiRolMenus
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiRolMenus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/rol-menus/{id}':
+    get:
+      summary: ''
+      operationId: getApiRolMenusId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Record not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Record not found'
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiRolMenusId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiRolMenusId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the rol menu.'
+        example: 4
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
