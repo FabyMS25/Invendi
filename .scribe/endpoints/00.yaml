@@ -257,7 +257,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"status":200,"message":"Users fetched successfully","data":[{"id":1,"nombre":"Jane Smith","email":"jane@example.com","email_verified_at":null,"celular":"+1234567890","whatsapp":"+1234567890","nickname":"jsmith","habilitado":true,"ayuda":false,"tipo_usuario_id":1,"ultima_conexion":null,"created_at":null,"updated_at":null}],"pagination":{"total":1,"per_page":10,"current_page":1,"last_page":1,"from":1,"to":1},"error":null}'
+        content: '{"success":true,"message":null,"data":[],"pagination":{"current_page":1,"per_page":20,"total":0,"last_page":1,"has_more_pages":false,"from":0,"to":0,"links":{"next":null,"prev":null,"first":"http:\/\/localhost\/api\/usuarios?page=1","last":"http:\/\/localhost\/api\/usuarios?page=1"}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -321,14 +321,14 @@ endpoints:
         name: id
         description: 'The ID of the usuario.'
         required: true
-        example: 1
+        example: 10
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -336,8 +336,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '{"message":"User retrieved successfully","data":{"id":1,"nombre":"Jane Smith","email":"jane@example.com","email_verified_at":null,"celular":"+1234567890","whatsapp":"+1234567890","nickname":"jsmith","habilitado":true,"ayuda":false,"tipo_usuario_id":1,"ultima_conexion":null,"created_at":null,"updated_at":null}}'
+        status: 404
+        content: '{"message":"User not found"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -372,14 +372,14 @@ endpoints:
         name: id
         description: 'The ID of the usuario.'
         required: true
-        example: 1
+        example: 8
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -413,14 +413,14 @@ endpoints:
         name: id
         description: 'The ID of the usuario.'
         required: true
-        example: 1
+        example: 8
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -454,14 +454,14 @@ endpoints:
         name: id
         description: 'The ID of the usuario.'
         required: true
-        example: 1
+        example: 9
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 9
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -495,14 +495,14 @@ endpoints:
         name: id
         description: 'The ID of the usuario.'
         required: true
-        example: 1
+        example: 10
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: 10
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -793,7 +793,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '[]'
+        content: '{"success":true,"message":null,"data":[{"id":1,"nombre":"Smith Company","titular":"jhon Dmith","actividad":"comercio","habilitado":true,"created_at":"2025-01-24T02:30:29.000000Z","updated_at":"2025-01-24T02:30:29.000000Z"}],"pagination":{"current_page":1,"per_page":20,"total":1,"last_page":1,"has_more_pages":false,"from":1,"to":1,"links":{"next":null,"prev":null,"first":"http:\/\/localhost\/api\/empresas?page=1","last":"http:\/\/localhost\/api\/empresas?page=1"}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -857,14 +857,14 @@ endpoints:
         name: id
         description: 'The ID of the empresa.'
         required: true
-        example: 14
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 14
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -872,8 +872,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 404
-        content: '{"message":"Record not found"}'
+        status: 200
+        content: '{"message":"Company retrieved successfully","data":{"id":1,"nombre":"Smith Company","titular":"jhon Dmith","actividad":"comercio","habilitado":true,"created_at":"2025-01-24T02:30:29.000000Z","updated_at":"2025-01-24T02:30:29.000000Z","agencias":[{"id":1,"empresa_id":1,"nombre":"com 1","direccion":"Bolivia Cbba","telefonos":"7123123","geolocalizacion":null,"correo_agencia":"SmithCompany@example.com","habilitado":true,"created_at":"2025-01-24T02:30:36.000000Z","updated_at":"2025-01-24T02:30:36.000000Z"}]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -908,14 +908,14 @@ endpoints:
         name: id
         description: 'The ID of the empresa.'
         required: true
-        example: 15
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 15
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -949,14 +949,14 @@ endpoints:
         name: id
         description: 'The ID of the empresa.'
         required: true
-        example: 14
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 14
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -995,7 +995,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '[]'
+        content: '{"success":true,"message":null,"data":[{"id":1,"empresa_id":1,"nombre":"com 1","direccion":"Bolivia Cbba","telefonos":"7123123","geolocalizacion":null,"correo_agencia":"SmithCompany@example.com","habilitado":true,"created_at":"2025-01-24T02:30:36.000000Z","updated_at":"2025-01-24T02:30:36.000000Z","empresa":{"id":1,"nombre":"Smith Company","titular":"jhon Dmith","actividad":"comercio","habilitado":true,"created_at":"2025-01-24T02:30:29.000000Z","updated_at":"2025-01-24T02:30:29.000000Z"}}],"pagination":{"current_page":1,"per_page":20,"total":1,"last_page":1,"has_more_pages":false,"from":1,"to":1,"links":{"next":null,"prev":null,"first":"http:\/\/localhost\/api\/agencias?page=1","last":"http:\/\/localhost\/api\/agencias?page=1"}}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1028,85 +1028,8 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      empresa_id:
-        name: empresa_id
-        description: 'The <code>id</code> of an existing record in the empresa table.'
-        required: true
-        example: ipsum
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      nombre:
-        name: nombre
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: kpgidytubssyyfwkn
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      direccion:
-        name: direccion
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: ebeklidyumljcjijhkeyi
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      telefonos:
-        name: telefonos
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: dga
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      geolocalizacion:
-        name: geolocalizacion
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: edqoipqdexmrpjliabzqh
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      correo_agencia:
-        name: correo_agencia
-        description: 'Must be a valid email address. Must not be greater than 255 characters.'
-        required: false
-        example: yeqafqnembxwz
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      habilitado:
-        name: habilitado
-        description: ''
-        required: true
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      empresa_id: ipsum
-      nombre: kpgidytubssyyfwkn
-      direccion: ebeklidyumljcjijhkeyi
-      telefonos: dga
-      geolocalizacion: edqoipqdexmrpjliabzqh
-      correo_agencia: yeqafqnembxwz
-      habilitado: true
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
@@ -1136,14 +1059,14 @@ endpoints:
         name: id
         description: 'The ID of the agencia.'
         required: true
-        example: 13
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 13
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1151,8 +1074,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 404
-        content: '{"message":"Agency not found"}'
+        status: 200
+        content: '{"id":1,"empresa_id":1,"nombre":"com 1","direccion":"Bolivia Cbba","telefonos":"7123123","geolocalizacion":null,"correo_agencia":"SmithCompany@example.com","habilitado":true,"created_at":"2025-01-24T02:30:36.000000Z","updated_at":"2025-01-24T02:30:36.000000Z","empresa":{"id":1,"nombre":"Smith Company","titular":"jhon Dmith","actividad":"comercio","habilitado":true,"created_at":"2025-01-24T02:30:29.000000Z","updated_at":"2025-01-24T02:30:29.000000Z"}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1187,14 +1110,14 @@ endpoints:
         name: id
         description: 'The ID of the agencia.'
         required: true
-        example: 5
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 5
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1212,7 +1135,7 @@ endpoints:
         name: nombre
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: sjuqykvzozohjwh
+        example: fnxyaoa
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1222,7 +1145,7 @@ endpoints:
         name: direccion
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: bbbdydcgyuhcrholedshidd
+        example: e
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1232,7 +1155,7 @@ endpoints:
         name: telefonos
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: jhyv
+        example: svzyorjmuboxswerfmadoogsj
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1242,7 +1165,7 @@ endpoints:
         name: geolocalizacion
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: oopxiqwqesydydegdjgb
+        example: cil
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1252,7 +1175,7 @@ endpoints:
         name: correo_agencia
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
-        example: duaxsry
+        example: ecushcdsqcdcpiivvsqpvvv
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1262,19 +1185,19 @@ endpoints:
         name: habilitado
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      nombre: sjuqykvzozohjwh
-      direccion: bbbdydcgyuhcrholedshidd
-      telefonos: jhyv
-      geolocalizacion: oopxiqwqesydydegdjgb
-      correo_agencia: duaxsry
-      habilitado: true
+      nombre: fnxyaoa
+      direccion: e
+      telefonos: svzyorjmuboxswerfmadoogsj
+      geolocalizacion: cil
+      correo_agencia: ecushcdsqcdcpiivvsqpvvv
+      habilitado: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -1303,6 +1226,167 @@ endpoints:
       id:
         name: id
         description: 'The ID of the agencia.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/menus
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '[]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/menus
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/menus/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu.'
+        required: true
+        example: 11
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 11
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Record not found"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/menus/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu.'
         required: true
         example: 2
         type: integer
@@ -1326,167 +1410,6 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: api/menus
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '[]'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/menus
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/menus/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the menu.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 404
-        content: '{"message":"Record not found"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/menus/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the menu.'
-        required: true
-        example: 9
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 9
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - DELETE
     uri: 'api/menus/{id}'
     metadata:
@@ -1506,14 +1429,14 @@ endpoints:
         name: id
         description: 'The ID of the menu.'
         required: true
-        example: 15
+        example: 7
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 15
+      id: 7
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1616,14 +1539,14 @@ endpoints:
         name: id
         description: 'The ID of the menu usuario.'
         required: true
-        example: 13
+        example: 8
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 13
+      id: 8
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1666,208 +1589,6 @@ endpoints:
       id:
         name: id
         description: 'The ID of the menu usuario.'
-        required: true
-        example: 9
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 9
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/menu-usuarios/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the menu usuario.'
-        required: true
-        example: 6
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 6
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/rol-menus
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: '[]'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/rol-menus
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/rol-menus/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the rol menu.'
-        required: true
-        example: 4
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 4
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 404
-        content: '{"message":"Record not found"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/rol-menus/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the rol menu.'
         required: true
         example: 11
         type: integer
@@ -1892,7 +1613,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/rol-menus/{id}'
+    uri: 'api/menu-usuarios/{id}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -1908,16 +1629,221 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the rol menu.'
+        description: 'The ID of the menu usuario.'
         required: true
-        example: 4
+        example: 13
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 4
+      id: 13
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/menu-roles
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '[]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/menu-roles
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/menu-roles/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu role.'
+        required: true
+        example: dolorem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: dolorem
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/menu-roles/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu role.'
+        required: true
+        example: rerum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: rerum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/menu-roles/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the menu role.'
+        required: true
+        example: natus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: natus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

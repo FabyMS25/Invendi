@@ -10,13 +10,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class Usuario extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-
     use /* HasApiTokens, */ HasFactory, Notifiable;
 
     protected $table = 'usuario';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'nombre',
         'email',
@@ -54,7 +52,7 @@ class Usuario extends Authenticatable
         ];
     }
 
-    public function menuUsuarios()
+    public function menuUsuario()
     {
         return $this->hasMany(MenuUsuario::class, 'usuario_id');
     }

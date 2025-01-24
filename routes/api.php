@@ -46,4 +46,4 @@ Route::apiResource('menus', MenuController::class);
 Route::apiResource('menu-usuarios', MenuUserController::class);
 
 // RolMenu Routes
-Route::apiResource('rol-menus', MenuRolController::class);
+Route::apiResource('menu-roles', MenuRolController::class);

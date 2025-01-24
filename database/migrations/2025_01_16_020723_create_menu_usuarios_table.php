@@ -13,7 +13,31 @@ return new class extends Migration
     {
         Schema::create('menu_usuario', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 255);
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('menu_id');
+            $table->unsignedBigInteger('empresa_id');
+            $table->unsignedBigInteger('agencia_id');
+            $table->boolean('habilitado')->default(true);
             $table->timestamps();
+
+            $table->foreign('usuario_id')
+                ->references('id')
+                ->on('usuario')
+                ->onDelete('cascade');
+            $table->foreign('menu_id')
+                ->references('id')
+                ->on('menu')
+                ->onDelete('cascade');
+            $table->foreign('empresa_id')
+                ->references('id')
+                ->on('empresa')
+                ->onDelete('cascade');
+
+            $table->foreign('agencia_id')
+                ->references('id')
+                ->on('agencia')
+                ->onDelete('cascade');
         });
     }
 

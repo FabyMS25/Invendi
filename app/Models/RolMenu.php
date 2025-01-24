@@ -11,7 +11,7 @@ class RolMenu extends Model
 
     protected $table = 'rol_menu';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'nombre',
@@ -25,7 +25,7 @@ class RolMenu extends Model
         return $this->belongsTo(Menu::class, 'menu_id');
     }
 
-    public function empresa()
+    public function company()
     {
         return $this->belongsTo(Empresa::class, 'empresa_id');
     }

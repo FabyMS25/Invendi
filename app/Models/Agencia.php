@@ -11,7 +11,7 @@ class Agencia extends Model
 
     protected $table = 'agencia';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'empresa_id',
         'nombre',

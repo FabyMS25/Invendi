@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('empresa', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre')->unique();
+            $table->string('titular');
+            $table->string('actividad');
+            $table->boolean('habilitado')->default(true);
             $table->timestamps();
         });
     }

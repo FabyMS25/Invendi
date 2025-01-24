@@ -11,7 +11,7 @@ class Menu extends Model
 
     protected $table = 'menu';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'nombre',
@@ -23,12 +23,12 @@ class Menu extends Model
         'habilitado',
     ];
 
-    public function menuUsuarios()
+    public function menuUsuario()
     {
         return $this->hasMany(MenuUsuario::class, 'menu_id');
     }
 
-    public function rolMenus()
+    public function rolesMenu()
     {
         return $this->hasMany(RolMenu::class, 'menu_id');
     }

@@ -11,7 +11,7 @@ class MenuUsuario extends Model
 
     protected $table = 'menu_usuario';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'usuario_id',
